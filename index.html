@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>进制转换与微课学习平台</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo" id="logo">指尖进制</div>
+            <div class="nav-links">
+                <a href="#about">关于我们</a>
+                <div class="dropdown">
+                    <a href="#basics" class="dropbtn">基础知识</a>
+                    <div class="dropdown-content">
+                        <a href="#math">数学篇</a>
+                        <a href="#history">历史篇</a>
+                        <a href="#computer">计算机篇</a>
+                    </div>
+                </div>
+                <a href="#applications">现实应用</a>
+                <a href="#expansion">拓展学习</a>
+                <div class="user-avatar" id="userAvatar">
+                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=user%20avatar%20icon%20simple%20design&image_size=square" alt="用户头像">
+                </div>
+            </div>
+            <div class="mobile-menu" id="mobileMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 登录/注册模态框 -->
+    <div class="modal" id="authModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="auth-tabs">
+                <button class="tab-btn active" data-tab="login">登录</button>
+                <button class="tab-btn" data-tab="register">注册</button>
+            </div>
+            <div class="tab-content" id="loginTab">
+                <h3>用户登录</h3>
+                <form id="loginForm">
+                    <input type="text" placeholder="用户名" required>
+                    <input type="password" placeholder="密码" required>
+                    <button type="submit">登录</button>
+                </form>
+            </div>
+            <div class="tab-content" id="registerTab" style="display: none;">
+                <h3>用户注册</h3>
+                <form id="registerForm">
+                    <input type="text" placeholder="用户名" required>
+                    <input type="email" placeholder="邮箱" required>
+                    <input type="password" placeholder="密码" required>
+                    <button type="submit">注册</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 主视觉区域 -->
+    <section class="banner">
+        <div class="container">
+            <h1>欢迎来到学习平台</h1>
+            <p>探索进制转换的奥秘，观看精彩微课</p>
+        </div>
+    </section>
+
+    <!-- 主页内容区域 -->
+    <div id="homeContent">
+        <!-- 功能入口 -->
+        <section class="feature-entries">
+            <div class="container">
+                <button class="entry-btn" id="convertBtn">进制转换</button>
+                <button class="entry-btn" id="videoBtn">微课观看</button>
+            </div>
+        </section>
+        <!-- 新手学习路径 -->
+        <section class="learning-path">
+            <div class="container">
+                <h2>新手学习路径</h2>
+                <div class="path-steps">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <p>看基础知识</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <p>用快速转换体验</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <p>看微课视频</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">4</div>
+                        <p>用完整工具练习</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">5</div>
+                        <p>评论区交流</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 平台核心优势 -->
+        <section class="core-advantages">
+            <div class="container">
+                <h2>平台核心优势</h2>
+                <div class="advantages-grid">
+                    <div class="advantage-card" id="visualConvertCard">
+                    <h3>可视化转换</h3>
+                    <p>除二取余、按权展开分步展示，零基础也能看懂</p>
+                </div>
+                <div class="advantage-card" id="microCourseCard">
+                    <h3>精品微课教学</h3>
+                    <p>短视频讲解，几分钟掌握一个知识点</p>
+                </div>
+                <div class="advantage-card" id="commentCard">
+                    <h3>评论互动答疑</h3>
+                    <p>不懂就问，同学老师一起交流</p>
+                </div>
+                <div class="advantage-card">
+                    <h3>全设备适配</h3>
+                    <p>手机、平板、电脑打开都能用</p>
+                </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 进制转换快速体验 -->
+        <section class="quick-convert">
+            <div class="container">
+                <h2>进制转换快速体验</h2>
+                <div class="quick-convert-container">
+                    <div class="convert-box">
+                        <h3>十进制转二进制</h3>
+                        <input type="number" id="quickDecimalInput" placeholder="输入十进制数" class="quick-input">
+                        <div class="quick-result" id="quickDecimalResult"></div>
+                    </div>
+                    <div class="convert-box">
+                        <h3>二进制转十进制</h3>
+                        <input type="text" id="quickBinaryInput" placeholder="输入二进制数" class="quick-input">
+                        <div class="quick-result" id="quickBinaryResult"></div>
+                    </div>
+                </div>
+                <p class="guide-text">想查看详细计算过程？<a href="#" id="fullToolLink">点击进入完整工具</a></p>
+            </div>
+        </section>
+
+        <!-- 精选微课推荐 -->
+        <section class="video-recommendations">
+            <div class="container">
+                <h2>精选微课推荐</h2>
+                <div class="videos-grid">
+                    <div class="video-card">
+                        <div class="video-cover">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=binary%20conversion%20tutorial%20blackboard%20math%20formula&image_size=landscape_4_3" alt="十进制转二进制">
+                        </div>
+                        <h3>5分钟搞懂：十进制转二进制（除二取余）</h3>
+                        <button class="watch-btn">立即观看</button>
+                    </div>
+                    <div class="video-card">
+                        <div class="video-cover">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=binary%20to%20decimal%20conversion%20mathematical%20process&image_size=landscape_4_3" alt="二进制转十进制">
+                        </div>
+                        <h3>二进制转十进制：按权展开法一步到位</h3>
+                        <button class="watch-btn">立即观看</button>
+                    </div>
+                    <div class="video-card">
+                        <div class="video-cover">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=computer%20binary%20system%20explanation%20digital%20circuit&image_size=landscape_4_3" alt="计算机为什么只用二进制">
+                        </div>
+                        <h3>计算机为什么只用二进制？超通俗讲解</h3>
+                        <button class="watch-btn">立即观看</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 进制转换模块 -->
+    <section class="module" id="convertModule" style="display: none;">
+        <div class="container">
+            <h2>进制转换工具</h2>
+            <div class="convert-container">
+                <!-- 十进制转二进制 -->
+                <div class="convert-section">
+                    <h3>十进制转二进制</h3>
+                    <input type="number" id="decimalInput" placeholder="输入十进制数">
+                    <div class="result" id="decimalResult">
+                        <h4>计算过程（除二取余法）</h4>
+                        <div class="steps" id="decimalSteps"></div>
+                        <div class="final-result" id="decimalFinal"></div>
+                    </div>
+                </div>
+                <!-- 二进制转十进制 -->
+                <div class="convert-section">
+                    <h3>二进制转十进制</h3>
+                    <input type="text" id="binaryInput" placeholder="输入二进制数">
+                    <div class="result" id="binaryResult">
+                        <h4>计算过程（按权展开法）</h4>
+                        <div class="steps" id="binarySteps"></div>
+                        <div class="final-result" id="binaryFinal"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 多进制转换 -->
+            <div class="convert-container multi-convert-container">
+                <div class="convert-section multi-convert">
+                    <h3>多进制转换</h3>
+                    <div class="multi-inputs">
+                        <div class="input-group">
+                            <label for="multiDecimalInput">十进制</label>
+                            <input type="number" id="multiDecimalInput" placeholder="输入十进制数">
+                        </div>
+                        <div class="input-group">
+                            <label for="multiBinaryInput">二进制</label>
+                            <input type="text" id="multiBinaryInput" placeholder="输入二进制数">
+                        </div>
+                        <div class="input-group">
+                            <label for="multiOctalInput">八进制</label>
+                            <input type="text" id="multiOctalInput" placeholder="输入八进制数">
+                        </div>
+                        <div class="input-group">
+                            <label for="multiHexInput">十六进制</label>
+                            <input type="text" id="multiHexInput" placeholder="输入十六进制数">
+                        </div>
+                    </div>
+                    <div class="result" id="multiResult">
+                        <h4>转换结果</h4>
+                        <div class="final-results" id="finalResults"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 微课观看评论模块 -->
+    <section class="module" id="videoModule" style="display: none;">
+        <div class="container">
+            <h2>微课观看与评论</h2>
+            <div class="video-container">
+                <video id="videoPlayer" controls>
+                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                    您的浏览器不支持视频播放
+                </video>
+            </div>
+            <div class="comments-section">
+                <h3>评论区</h3>
+                <div class="comment-input">
+                    <input type="text" id="commentInput" placeholder="写下您的评论...">
+                    <button id="submitComment">提交评论</button>
+                </div>
+                <div class="comment-list" id="commentList">
+                    <!-- 评论将动态添加 -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 内容区域 -->
+    <section id="about" class="content-section">
+        <div class="container">
+            <h2>关于我们</h2>
+            <p>我们是一个专注于提供高质量学习资源的平台，致力于帮助用户理解复杂的数学概念和计算机知识。</p>
+        </div>
+    </section>
+
+    <section id="basics" class="content-section">
+        <div class="container">
+            <h2>基础知识</h2>
+            <p>探索各种学科的基础知识，包括数学、历史和计算机科学。</p>
+        </div>
+    </section>
+
+    <section id="applications" class="content-section">
+        <div class="container">
+            <h2>现实应用</h2>
+            <p>了解所学知识在现实生活中的应用场景。</p>
+        </div>  
+    </section>
+
+    <section id="expansion" class="content-section">
+        <div class="container">
+            <h2>拓展学习</h2>
+            <p>深入学习各种高级主题，拓展您的知识视野。</p>
+        </div>
+    </section>
+
+    <!-- 尾部信息栏 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>关于我们</h4>
+                    <ul>
+                        <li><a href="#">公司简介</a></li>
+                        <li><a href="#">发展历程</a></li>
+                        <li><a href="#">团队介绍</a></li>
+                        <li><a href="#">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>产品服务</h4>
+                    <ul>
+                        <li><a href="#">进制转换</a></li>
+                        <li><a href="#">微课学习</a></li>
+                        <li><a href="#">在线测试</a></li>
+                        <li><a href="#">学习资源</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>帮助中心</h4>
+                    <ul>
+                        <li><a href="#">使用指南</a></li>
+                        <li><a href="#">常见问题</a></li>
+                        <li><a href="#">意见反馈</a></li>
+                        <li><a href="#">技术支持</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>关注我们</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link wechat" id="wechatLink">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=wechat%20logo%20simple%20design&image_size=square" alt="微信">
+                        </a>
+                        <a href="#" class="social-link">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=weibo%20logo%20simple%20design&image_size=square" alt="微博">
+                        </a>
+                        <a href="#" class="social-link">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=github%20logo%20simple%20design&image_size=square" alt="GitHub">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 指尖进制 版权所有</p>
+                <div class="footer-links">
+                    <a href="#">隐私政策</a>
+                    <a href="#">服务条款</a>
+                    <a href="#">法律声明</a>
+                </div>
+            </div>
+        </div>
+        <!-- 微信二维码 -->
+        <div class="wechat-qr" id="wechatQr">
+            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=wechat%20qr%20code%20with%20logo%20simple%20design&image_size=square" alt="微信二维码">
+            <p>扫码关注微信公众号</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
