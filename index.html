@@ -14,18 +14,23 @@
             <div class="nav-links">
                 <a href="#about">关于我们</a>
                 <div class="dropdown">
-                    <a href="#basics" class="dropbtn">基础知识</a>
+                    <a href="#" class="dropbtn">基础知识</a>
                     <div class="dropdown-content">
-                        <a href="#math">数学篇</a>
-                        <a href="#history">历史篇</a>
-                        <a href="#computer">计算机篇</a>
+                        <div class="sub-dropdown">
+                            <a href="#history" class="sub-dropbtn">数史寻源：历史篇</a>
+                            <div class="sub-dropdown-content">
+                                <a href="#binaryHistory">数之本源：二进制</a>
+                                <a href="#decimalHistory">数之本源：十进制</a>
+                                <a href="#abacusHistory">珠算溯源</a>
+                                <a href="#computerHistory">计算机简史</a>
+                            </div>
+                        </div>
+                        <a href="#math">转码工具：数学篇</a>
+                        <a href="#computer">机算基础：计算机篇</a>
                     </div>
                 </div>
                 <a href="#applications">现实应用</a>
                 <a href="#expansion">拓展学习</a>
-                <div class="user-avatar" id="userAvatar">
-                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=user%20avatar%20icon%20simple%20design&image_size=square" alt="用户头像">
-                </div>
             </div>
             <div class="mobile-menu" id="mobileMenu">
                 <span></span>
@@ -34,34 +39,6 @@
             </div>
         </div>
     </nav>
-
-    <!-- 登录/注册模态框 -->
-    <div class="modal" id="authModal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div class="auth-tabs">
-                <button class="tab-btn active" data-tab="login">登录</button>
-                <button class="tab-btn" data-tab="register">注册</button>
-            </div>
-            <div class="tab-content" id="loginTab">
-                <h3>用户登录</h3>
-                <form id="loginForm">
-                    <input type="text" placeholder="用户名" required>
-                    <input type="password" placeholder="密码" required>
-                    <button type="submit">登录</button>
-                </form>
-            </div>
-            <div class="tab-content" id="registerTab" style="display: none;">
-                <h3>用户注册</h3>
-                <form id="registerForm">
-                    <input type="text" placeholder="用户名" required>
-                    <input type="email" placeholder="邮箱" required>
-                    <input type="password" placeholder="密码" required>
-                    <button type="submit">注册</button>
-                </form>
-            </div>
-        </div>
-    </div>
 
     <!-- 主视觉区域 -->
     <section class="banner">
@@ -101,10 +78,6 @@
                         <div class="step-number">4</div>
                         <p>用完整工具练习</p>
                     </div>
-                    <div class="step-item">
-                        <div class="step-number">5</div>
-                        <p>评论区交流</p>
-                    </div>
                 </div>
             </div>
         </section>
@@ -118,13 +91,13 @@
                     <h3>可视化转换</h3>
                     <p>除二取余、按权展开分步展示，零基础也能看懂</p>
                 </div>
+                <div class="advantage-card">
+                    <h3>多进制一键转换</h3>
+                    <p>支持十进制、二进制、八进制、十六进制之间的快速转换</p>
+                </div>
                 <div class="advantage-card" id="microCourseCard">
                     <h3>精品微课教学</h3>
                     <p>短视频讲解，几分钟掌握一个知识点</p>
-                </div>
-                <div class="advantage-card" id="commentCard">
-                    <h3>评论互动答疑</h3>
-                    <p>不懂就问，同学老师一起交流</p>
                 </div>
                 <div class="advantage-card">
                     <h3>全设备适配</h3>
@@ -243,25 +216,15 @@
         </div>
     </section>
 
-    <!-- 微课观看评论模块 -->
+    <!-- 微课观看模块 -->
     <section class="module" id="videoModule" style="display: none;">
         <div class="container">
-            <h2>微课观看与评论</h2>
+            <h2>微课观看</h2>
             <div class="video-container">
                 <video id="videoPlayer" controls>
                     <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
                     您的浏览器不支持视频播放
                 </video>
-            </div>
-            <div class="comments-section">
-                <h3>评论区</h3>
-                <div class="comment-input">
-                    <input type="text" id="commentInput" placeholder="写下您的评论...">
-                    <button id="submitComment">提交评论</button>
-                </div>
-                <div class="comment-list" id="commentList">
-                    <!-- 评论将动态添加 -->
-                </div>
             </div>
         </div>
     </section>
@@ -274,10 +237,73 @@
         </div>
     </section>
 
-    <section id="basics" class="content-section">
+    <section id="history" class="content-section">
         <div class="container">
-            <h2>基础知识</h2>
-            <p>探索各种学科的基础知识，包括数学、历史和计算机科学。</p>
+            <h2>历史篇</h2>
+            <p>探索进制的历史发展，了解不同文明如何使用进制系统，以及进制如何随着时间演变。</p>
+        </div>
+    </section>
+
+    <section id="binaryHistory" class="content-section">
+        <div class="container">
+            <h2>极简密码：二进制的历史与演变</h2>
+            
+            <h3>古老文明中的二元智慧</h3>
+            <p>二进制的思想萌芽，深藏于人类早期文明之中。古埃及人利用二元拆分法完成计算，古印度学者以长短音节构建二元组合逻辑，而中国《易经》的阴爻与阳爻，更是通过两种基本符号的排列组合，形成了完整的八卦体系，直观体现了二进制的核心规律。这些古老智慧，虽未形成系统数制，却为二进制的诞生埋下了思想种子。</p>
+            
+            <h3>近代数学的正式确立</h3>
+            <p>17世纪，二进制迎来了关键的理论突破。德国数学家莱布尼茨在研究中系统确立了二进制的运算规则，定义0和1为基本数字，完善了逢二进一的计数法则。1703年，他正式发表二进制相关论文，将这一数制理论化、体系化，同时结合《易经》的阴阳思想，赋予二进制数学与哲学的双重价值，成为二进制正式诞生的标志。</p>
+            
+            <h3>逻辑与机械的应用探索</h3>
+            <p>19世纪，二进制从理论走向实践。乔治·布尔创立布尔代数，将二进制与逻辑判断结合，搭建起数学与电路计算的桥梁。此后，穿孔卡技术应运而生，以“有孔”和“无孔”对应1和0，实现了信息的机械存储与处理，让二进制首次在设备中得到应用，为电子计算时代做好了铺垫。</p>
+            
+            <h3>数字时代的核心基石</h3>
+            <p>20世纪中叶，电子计算机的问世让二进制彻底成为数字世界的根基。晶体管的通电与断电、电路的导通与截止，天然对应0和1两种状态，二进制凭借简洁、稳定的特性，成为数据存储、运算、传输的唯一标准。如今，二进制支撑着计算机、手机、互联网等所有数字技术，是现代科技文明不可或缺的底层逻辑。</p>
+        </div>
+    </section>
+
+    <section id="decimalHistory" class="content-section">
+        <div class="container">
+            <h2>源于本能的计数开端</h2>
+            
+            <p>十进制的诞生，与人类最直观的身体特征息息相关。远古时期，人们依靠双手十指计数、分配食物、记录数量，这种便捷自然的计数方式，逐渐成为全人类共同的选择。早在数万年前，原始人类便在岩壁、兽骨上刻下痕迹，用十进位的思路记录天数与猎物，成为十进制最早的雏形。</p>
+            
+            <h3>古代文明中的体系化发展</h3>
+            <p>随着文明进步，十进制在各大古国逐步形成完整制度。古埃及、古巴比伦都出现以十为单位的记数符号；古印度发明了简洁高效的十进制数字系统，为后世阿拉伯数字奠定基础。中国在商代便已使用严格的十进制计数法，甲骨文里清晰出现十、百、千、万等数位，是世界上最早确立完善十进制的文明之一。</p>
+            
+            <h3>阿拉伯数字的全球普及</h3>
+            <p>中世纪，印度的十进制计数法经由阿拉伯人传入欧洲，被称为“阿拉伯数字”。这套系统包含0—9十个符号，依靠位置表示数值大小，书写简单、计算便捷，迅速取代了复杂的罗马数字。十进制由此走出地域限制，成为全世界通用的计数规则，推动了商业、数学与科学的飞速发展。</p>
+            
+            <h3>贯穿古今的实用基础</h3>
+            <p>从日常交易到天文计算，从建筑工程到现代科技，十进制始终是人类生活与文明的基础。它简单、直观、易于掌握，陪伴人类走过数万年历程。即便在二进制主导的数字时代，十进制依然是人们理解、使用数字的核心方式，成为人类文明中最稳定、最持久的智慧成果。</p>
+        </div>
+    </section>
+
+    <section id="abacusHistory" class="content-section">
+        <div class="container">
+            <h2>算盘历史</h2>
+            <p>算盘是中国古代的计算工具，使用十进制系统。它的发明极大地提高了计算效率，是古代数学发展的重要工具。</p>
+        </div>
+    </section>
+
+    <section id="computerHistory" class="content-section">
+        <div class="container">
+            <h2>计算机历史</h2>
+            <p>计算机的发展与二进制系统密切相关。从早期的机械计算机到现代的电子计算机，二进制一直是计算机内部数据表示的基础。</p>
+        </div>
+    </section>
+
+    <section id="math" class="content-section">
+        <div class="container">
+            <h2>数学篇</h2>
+            <p>深入了解进制的数学原理，包括进制转换的数学基础、不同进制的运算规则等内容。</p>
+        </div>
+    </section>
+
+    <section id="computer" class="content-section">
+        <div class="container">
+            <h2>计算机篇</h2>
+            <p>了解计算机如何使用二进制，以及进制在计算机科学中的应用，包括数据存储、编码等方面。</p>
         </div>
     </section>
 
@@ -295,6 +321,51 @@
         </div>
     </section>
 
+    <!-- 隐私政策弹窗 -->
+    <div class="modal" id="privacyModal">
+        <div class="modal-content policy-modal">
+            <span class="close">&times;</span>
+            <h2>🔒 隐私政策</h2>
+            <div class="policy-content">
+                <p><strong>1. 信息收集说明：</strong></p>
+                <p>本网站作为参赛作品，仅用于比赛展示与功能演示目的，不会主动收集、存储或向任何第三方共享您的个人身份信息（包括但不限于姓名、联系方式、身份证号等）。</p>
+                
+                <p><strong>2. 数据处理规范：</strong></p>
+                <p>所有用户操作数据（如进制转换输入内容、测试答题记录、学习进度数据等）均仅在您的本地设备中进行临时处理和存储，不会上传至任何远程服务器或云端存储。</p>
+                
+                <p><strong>3. 主动提交信息处理：</strong></p>
+                <p>若您通过意见反馈、技术支持或其他功能主动提交信息，这些信息将严格限于本次比赛相关的沟通与作品改进使用，比赛结束后将立即进行永久性删除，不会保留任何用户提交信息。</p>
+                
+                <p><strong>4. 隐私保护承诺：</strong></p>
+                <p>我们将采取合理技术措施保护您在本地设备上的数据安全，防止未授权访问或数据泄露。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 服务条款弹窗 -->
+    <div class="modal" id="termsModal">
+        <div class="modal-content policy-modal">
+            <span class="close">&times;</span>
+            <h2>📜 服务条款</h2>
+            <div class="policy-content">
+                <p><strong>1. 服务性质说明：</strong></p>
+                <p>本网站为非商业性参赛项目，所有功能模块（包括但不限于进制转换工具、微课学习系统、在线测试平台等）仅供学习交流和比赛展示使用，不提供任何形式的商业服务或盈利性活动。</p>
+                
+                <p><strong>2. 使用规范要求：</strong></p>
+                <p>您在使用本网站过程中必须严格遵守中华人民共和国相关法律法规及比赛规则，不得利用本网站从事任何违法违规活动，包括但不限于传播不良信息、侵犯他人权益、恶意攻击系统或进行网络安全测试等行为。</p>
+                
+                <p><strong>3. 服务稳定性声明：</strong></p>
+                <p>本网站作为参赛作品，不保证服务的完全无中断性或零错误率。因服务器维护、网络问题或技术限制可能导致服务暂时不可用，我们将尽力保障服务稳定性但不承担相关责任。</p>
+                
+                <p><strong>4. 责任限制条款：</strong></p>
+                <p>因使用本网站产生的任何直接或间接损失（包括但不限于数据丢失、设备损坏、业务中断等），项目主办方及开发团队不承担任何赔偿责任。</p>
+                
+                <p><strong>5. 服务期限说明：</strong></p>
+                <p>本服务条款仅适用于本次比赛期间，比赛正式结束后，本网站将停止运营并关闭服务，所有本地数据请用户自行备份。</p>
+            </div>
+        </div>
+    </div>
+
     <!-- 尾部信息栏 -->
     <footer class="footer">
         <div class="container">
@@ -302,41 +373,22 @@
                 <div class="footer-section">
                     <h4>关于我们</h4>
                     <ul>
-                        <li><a href="#">公司简介</a></li>
-                        <li><a href="#">发展历程</a></li>
-                        <li><a href="#">团队介绍</a></li>
-                        <li><a href="#">联系我们</a></li>
+                        <li><a href="#about">团队介绍</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>产品服务</h4>
                     <ul>
-                        <li><a href="#">进制转换</a></li>
-                        <li><a href="#">微课学习</a></li>
-                        <li><a href="#">在线测试</a></li>
-                        <li><a href="#">学习资源</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>帮助中心</h4>
-                    <ul>
-                        <li><a href="#">使用指南</a></li>
-                        <li><a href="#">常见问题</a></li>
-                        <li><a href="#">意见反馈</a></li>
-                        <li><a href="#">技术支持</a></li>
+                        <li><a href="#" id="footerConvertLink">进制转换</a></li>
+                        <li><a href="#" id="footerVideoLink">微课学习</a></li>
+                        <li><a href="#" id="footerTestLink">在线测试</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>关注我们</h4>
                     <div class="social-links">
                         <a href="#" class="social-link wechat" id="wechatLink">
-                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=wechat%20logo%20simple%20design&image_size=square" alt="微信">
-                        </a>
-                        <a href="#" class="social-link">
-                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=weibo%20logo%20simple%20design&image_size=square" alt="微博">
-                        </a>
-                        <a href="#" class="social-link">
-                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=github%20logo%20simple%20design&image_size=square" alt="GitHub">
+                            <img src="C:\\Users\\25413\\Desktop\\web design\\pictures\\wechat logo.png" alt="微信">
                         </a>
                     </div>
                 </div>
@@ -344,16 +396,19 @@
             <div class="footer-bottom">
                 <p>&copy; 2026 指尖进制 版权所有</p>
                 <div class="footer-links">
-                    <a href="#">隐私政策</a>
-                    <a href="#">服务条款</a>
-                    <a href="#">法律声明</a>
+                    <a href="#" id="privacyLink">隐私政策</a>
+                    <a href="#" id="termsLink">服务条款</a>
                 </div>
             </div>
         </div>
         <!-- 微信二维码 -->
         <div class="wechat-qr" id="wechatQr">
-            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=wechat%20qr%20code%20with%20logo%20simple%20design&image_size=square" alt="微信二维码">
+            <img src="C:\Users\25413\Desktop\web design\pictures\weixingongzhonghao.jpg" alt="微信二维码">
             <p>扫码关注微信公众号</p>
+        </div>
+        <!-- 底部补充提示 -->
+        <div class="footer-notice">
+            <p>本作品为「指尖进制」参赛项目，仅用于赛事展示与功能演示，不面向公众提供长期运营服务，比赛结束后将停止访问。</p>
         </div>
     </footer>
 

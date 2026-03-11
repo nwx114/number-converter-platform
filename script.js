@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelector('.nav-links');
     const logo = document.getElementById('logo');
     
-    // Logo点击返回主页
+    // Logo点击返回主页并显示二维码
     logo.addEventListener('click', function() {
         // 隐藏所有模块和内容区域
         const convertModule = document.getElementById('convertModule');
@@ -21,67 +21,19 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // 滚动到页面顶部
         window.scrollTo({ top: 0, behavior: 'smooth' });
+        
+        // 显示微信二维码
+        const wechatQr = document.getElementById('wechatQr');
+        if (wechatQr) {
+            wechatQr.style.display = 'block';
+        }
     });
     
     mobileMenu.addEventListener('click', function() {
         navLinks.classList.toggle('active');
     });
     
-    // 登录/注册模态框
-    const authModal = document.getElementById('authModal');
-    const userAvatar = document.getElementById('userAvatar');
-    const closeBtn = document.querySelector('.close');
-    const tabBtns = document.querySelectorAll('.tab-btn');
-    const tabContents = document.querySelectorAll('.tab-content');
-    
-    userAvatar.addEventListener('click', function() {
-        authModal.style.display = 'block';
-    });
-    
-    closeBtn.addEventListener('click', function() {
-        authModal.style.display = 'none';
-    });
-    
-    window.addEventListener('click', function(event) {
-        if (event.target === authModal) {
-            authModal.style.display = 'none';
-        }
-    });
-    
-    // 标签切换
-    tabBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            const tab = this.getAttribute('data-tab');
-            
-            // 移除所有标签的active类
-            tabBtns.forEach(b => b.classList.remove('active'));
-            tabContents.forEach(c => c.style.display = 'none');
-            
-            // 激活当前标签
-            this.classList.add('active');
-            document.getElementById(tab + 'Tab').style.display = 'block';
-        });
-    });
-    
-    // 表单提交
-    const loginForm = document.getElementById('loginForm');
-    const registerForm = document.getElementById('registerForm');
-    
-    if (loginForm) {
-        loginForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('登录成功！');
-            authModal.style.display = 'none';
-        });
-    }
-    
-    if (registerForm) {
-        registerForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('注册成功！');
-            authModal.style.display = 'none';
-        });
-    }
+
     
     // 功能模块切换
     const convertBtn = document.getElementById('convertBtn');
@@ -116,29 +68,100 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // 导航链接点击事件
+    function handleAnchorClick(e) {
+        e.preventDefault();
+        // 隐藏所有模块
+        convertModule.style.display = 'none';
+        videoModule.style.display = 'none';
+        // 隐藏主页内容
+        homeContent.style.display = 'none';
+        // 隐藏所有内容区域
+        contentSections.forEach(section => section.classList.remove('active'));
+        // 获取目标ID
+        const targetId = this.getAttribute('href').substring(1);
+        // 显示对应的内容区域
+        const targetSection = document.getElementById(targetId);
+        if (targetSection) {
+            targetSection.classList.add('active');
+            // 滚动到内容区域
+            targetSection.scrollIntoView({ behavior: 'smooth' });
+        }
+        // 在移动端关闭菜单
+        navLinks.classList.remove('active');
+    }
+    
+    // 处理导航栏链接
     const navAnchorLinks = document.querySelectorAll('.nav-links a');
     navAnchorLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            // 隐藏所有模块
-            convertModule.style.display = 'none';
-            videoModule.style.display = 'none';
-            // 隐藏主页内容
-            homeContent.style.display = 'none';
-            // 隐藏所有内容区域
-            contentSections.forEach(section => section.classList.remove('active'));
-            // 获取目标ID
-            const targetId = this.getAttribute('href').substring(1);
-            // 显示对应的内容区域
-            const targetSection = document.getElementById(targetId);
-            if (targetSection) {
-                targetSection.classList.add('active');
-                // 滚动到内容区域
-                targetSection.scrollIntoView({ behavior: 'smooth' });
-            }
-            // 在移动端关闭菜单
-            navLinks.classList.remove('active');
-        });
+        // 对于基础知识链接，点击返回主页
+        if (link.classList.contains('dropbtn')) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                // 显示主页内容
+                const convertModule = document.getElementById('convertModule');
+                const videoModule = document.getElementById('videoModule');
+                const contentSections = document.querySelectorAll('.content-section');
+                const homeContent = document.getElementById('homeContent');
+                
+                convertModule.style.display = 'none';
+                videoModule.style.display = 'none';
+                contentSections.forEach(section => section.classList.remove('active'));
+                homeContent.style.display = 'block';
+                
+                // 滚动到页面顶部
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        } else {
+            link.addEventListener('click', handleAnchorClick);
+        }
+    });
+    
+    // 处理页脚链接
+    const footerAnchorLinks = document.querySelectorAll('.footer-section a');
+    footerAnchorLinks.forEach(link => {
+        // 为页脚产品服务链接添加特殊处理
+        if (link.id === 'footerConvertLink') {
+            // 进制转换链接点击事件
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                // 隐藏所有内容区域和模块
+                contentSections.forEach(section => section.classList.remove('active'));
+                videoModule.style.display = 'none';
+                // 隐藏主页内容
+                homeContent.style.display = 'none';
+                // 显示进制转换模块
+                convertModule.style.display = 'block';
+                // 滚动到模块顶部
+                convertModule.scrollIntoView({ behavior: 'smooth' });
+            });
+        } else if (link.id === 'footerVideoLink') {
+            // 微课学习链接点击事件
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                // 隐藏所有内容区域和模块
+                contentSections.forEach(section => section.classList.remove('active'));
+                convertModule.style.display = 'none';
+                // 隐藏主页内容
+                homeContent.style.display = 'none';
+                // 显示视频模块
+                videoModule.style.display = 'block';
+                // 滚动到模块顶部
+                videoModule.scrollIntoView({ behavior: 'smooth' });
+            });
+        } else if (link.id === 'footerTestLink') {
+            // 在线测试链接点击事件
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                // 显示微信二维码
+                const wechatQr = document.getElementById('wechatQr');
+                if (wechatQr) {
+                    wechatQr.style.display = 'block';
+                }
+            });
+        } else {
+            // 其他页脚链接使用默认处理
+            link.addEventListener('click', handleAnchorClick);
+        }
     });
     
     // 进制转换功能
@@ -323,124 +346,90 @@ document.addEventListener('DOMContentLoaded', function() {
         multiHexInput.addEventListener('input', handleInput(16));
     }
     
-    // 评论功能
-    const commentInput = document.getElementById('commentInput');
-    const submitComment = document.getElementById('submitComment');
-    const commentList = document.getElementById('commentList');
-    
-    // 从localStorage加载评论
-    function loadComments() {
-        const comments = JSON.parse(localStorage.getItem('comments') || '[]');
-        commentList.innerHTML = '';
-        
-        comments.forEach(comment => {
-            const commentItem = document.createElement('div');
-            commentItem.className = 'comment-item';
-            
-            // 创建评论头部
-            const header = document.createElement('div');
-            header.className = 'comment-header';
-            
-            const author = document.createElement('span');
-            author.className = 'comment-author';
-            author.textContent = `用户${comment.id}`;
-            header.appendChild(author);
-            
-            const time = document.createElement('span');
-            time.className = 'comment-time';
-            time.textContent = comment.time;
-            header.appendChild(time);
-            
-            // 创建评论内容
-            const content = document.createElement('div');
-            content.className = 'comment-content';
-            content.textContent = comment.content;
-            
-            // 创建评论操作
-            const actions = document.createElement('div');
-            actions.className = 'comment-actions';
-            
-            const likeBtn = document.createElement('button');
-            likeBtn.className = 'like-btn';
-            likeBtn.setAttribute('data-id', comment.id);
-            likeBtn.textContent = `点赞 (${comment.likes})`;
-            actions.appendChild(likeBtn);
-            
-            const replyBtn = document.createElement('button');
-            replyBtn.className = 'reply-btn';
-            replyBtn.textContent = '回复';
-            actions.appendChild(replyBtn);
-            
-            // 组装评论项
-            commentItem.appendChild(header);
-            commentItem.appendChild(content);
-            commentItem.appendChild(actions);
-            
-            commentList.appendChild(commentItem);
-        });
-        
-        // 添加点赞事件
-        document.querySelectorAll('.like-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const commentId = parseInt(this.getAttribute('data-id'));
-                likeComment(commentId);
-            });
-        });
-    }
-    
-    // 点赞功能
-    function likeComment(id) {
-        const comments = JSON.parse(localStorage.getItem('comments') || '[]');
-        const commentIndex = comments.findIndex(comment => comment.id === id);
-        
-        if (commentIndex !== -1) {
-            comments[commentIndex].likes++;
-            localStorage.setItem('comments', JSON.stringify(comments));
-            loadComments();
-        }
-    }
-    
-    // 提交评论
-    if (submitComment) {
-        submitComment.addEventListener('click', function() {
-            const content = commentInput.value.trim();
-            if (content) {
-                const comments = JSON.parse(localStorage.getItem('comments') || '[]');
-                const newComment = {
-                    id: Date.now(),
-                    content: content,
-                    time: new Date().toLocaleString(),
-                    likes: 0
-                };
-                
-                comments.push(newComment);
-                localStorage.setItem('comments', JSON.stringify(comments));
-                commentInput.value = '';
-                loadComments();
-            }
-        });
-    }
-    
-    // 初始加载评论
-    loadComments();
+
     
     // 微信二维码显示功能
     const wechatLink = document.getElementById('wechatLink');
     const wechatQr = document.getElementById('wechatQr');
     
+    function toggleWechatQr() {
+        if (wechatQr) {
+            wechatQr.style.display = wechatQr.style.display === 'block' ? 'none' : 'block';
+        }
+    }
+    
     if (wechatLink && wechatQr) {
         wechatLink.addEventListener('click', function(e) {
             e.preventDefault();
+            // 确保主页内容显示
+            const homeContent = document.getElementById('homeContent');
+            if (homeContent) {
+                homeContent.style.display = 'block';
+            }
+            // 隐藏所有模块
+            const convertModule = document.getElementById('convertModule');
+            const videoModule = document.getElementById('videoModule');
+            if (convertModule) convertModule.style.display = 'none';
+            if (videoModule) videoModule.style.display = 'none';
+            // 隐藏所有内容区域
+            const contentSections = document.querySelectorAll('.content-section');
+            contentSections.forEach(section => section.classList.remove('active'));
+            // 只显示/隐藏二维码，不改变主页面状态
             wechatQr.style.display = wechatQr.style.display === 'block' ? 'none' : 'block';
         });
-        
-        // 点击其他地方关闭二维码
-        document.addEventListener('click', function(e) {
-            if (!wechatLink.contains(e.target) && !wechatQr.contains(e.target)) {
-                wechatQr.style.display = 'none';
-            }
+    }
+    
+
+    
+    // 点击其他地方关闭二维码
+    document.addEventListener('click', function(e) {
+        if (wechatQr && !wechatLink?.contains(e.target) && !wechatQr.contains(e.target)) {
+            wechatQr.style.display = 'none';
+        }
+    });
+    
+    // 隐私政策和服务条款弹窗
+    const privacyModal = document.getElementById('privacyModal');
+    const termsModal = document.getElementById('termsModal');
+    const privacyLink = document.getElementById('privacyLink');
+    const termsLink = document.getElementById('termsLink');
+    const closeBtns = document.querySelectorAll('.modal .close');
+    
+    // 打开隐私政策弹窗
+    if (privacyLink && privacyModal) {
+        privacyLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            privacyModal.style.display = 'block';
         });
     }
+    
+    // 打开服务条款弹窗
+    if (termsLink && termsModal) {
+        termsLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            termsModal.style.display = 'block';
+        });
+    }
+    
+    // 关闭弹窗
+    closeBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const modal = this.closest('.modal');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        });
+    });
+    
+    // 点击弹窗外部关闭
+    window.addEventListener('click', function(event) {
+        if (event.target === privacyModal) {
+            privacyModal.style.display = 'none';
+        }
+        if (event.target === termsModal) {
+            termsModal.style.display = 'none';
+        }
+    });
 
     // 快速转换功能
     const quickDecimalInput = document.getElementById('quickDecimalInput');
@@ -528,7 +517,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 核心优势卡片点击事件
     const visualConvertCard = document.getElementById('visualConvertCard');
     const microCourseCard = document.getElementById('microCourseCard');
-    const commentCard = document.getElementById('commentCard');
+    const multiConvertCard = document.querySelector('.advantage-card:nth-child(2)');
     
     // 可视化转换卡片点击事件
     if (visualConvertCard) {
@@ -560,27 +549,22 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // 评论互动答疑卡片点击事件
-    if (commentCard) {
-        commentCard.addEventListener('click', function() {
+    // 多进制一键转换卡片点击事件
+    if (multiConvertCard) {
+        multiConvertCard.addEventListener('click', function() {
             // 隐藏所有内容区域和模块
             contentSections.forEach(section => section.classList.remove('active'));
-            convertModule.style.display = 'none';
+            videoModule.style.display = 'none';
             // 隐藏主页内容
             homeContent.style.display = 'none';
-            // 显示视频模块
-            videoModule.style.display = 'block';
+            // 显示进制转换模块
+            convertModule.style.display = 'block';
             // 滚动到模块顶部
-            videoModule.scrollIntoView({ behavior: 'smooth' });
-            // 聚焦到评论区
-            setTimeout(() => {
-                const commentsSection = document.querySelector('.comments-section');
-                if (commentsSection) {
-                    commentsSection.scrollIntoView({ behavior: 'smooth' });
-                }
-            }, 500);
+            convertModule.scrollIntoView({ behavior: 'smooth' });
         });
     }
+    
+
 
     // 完整工具链接点击事件
     const fullToolLink = document.getElementById('fullToolLink');
