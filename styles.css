@@ -287,7 +287,7 @@ body {
 
 /* 主视觉区域 */
 .banner {
-    background-image: url('https://pagespictures-1410723625.cos.ap-beijing.myqcloud.com/background.jpg?q-sign-algorithm=sha1&q-ak=AKIDpE31uPvqwjgzocQwN1t1X-OkLbDsvCC1AmvZLgl9gJOS8_oj8oo5VlG0RfrzqYNu&q-sign-time=1773286119;1773289719&q-key-time=1773286119;1773289719&q-header-list=host&q-url-param-list=&q-signature=198ee62b2c3ada8745d90a3446b5ed69752d175b&x-cos-security-token=H63516Vz56nvVHxYmqAP7tbJpRk1PnBa45bfb84229c8f25a3b6df5f881d9a1c0UtltODxkMaBPXxKcoC_gR7Fq99w72t3bo05SJSxOuXYw5t7EKCBcP3JPDI4w5XifvRttl90fdXW4XGLgS8J-l6CRkEDEUKZ7Rvla2E173Ecy9zErXm0CFp9GxczeL4Ce3PXlL6eckL-5hR6BxaJlmpNpwTdjSELJvzGNyXBR6xTb8IfGeLWZ74SbllU6SuttpTT5mrkjarbQjDRew7CNZbuUgOXq8tvZzqFZ93_k7J283OsBBYHD-NM_wtOP03NmBhdrcs6QHt__6Ojd_r_hkA&');
+    background-image: url('https://pagespictures-1410723625.cos.ap-beijing.myqcloud.com/background.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
