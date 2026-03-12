@@ -604,6 +604,13 @@ video {
     font-weight: bold;
 }
 
+.content-section h4 {
+    margin: 20px 0 10px;
+    color: #8b7355;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
 .content-section p {
     margin-bottom: 20px;
     line-height: 1.8;

@@ -83,8 +83,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const targetSection = document.getElementById(targetId);
         if (targetSection) {
             targetSection.classList.add('active');
-            // 滚动到内容区域
-            targetSection.scrollIntoView({ behavior: 'smooth' });
+            // 滚动到内容区域顶部，确保从大标题开始显示
+            window.scrollTo({
+                top: targetSection.offsetTop - 80, // 减去导航栏高度，确保标题完全可见
+                behavior: 'smooth'
+            });
         }
         // 在移动端关闭菜单
         navLinks.classList.remove('active');
