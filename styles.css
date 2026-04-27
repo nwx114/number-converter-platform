@@ -742,12 +742,11 @@ video {
     max-width: 700px;
     margin: 0 auto;
 }
-
 .advantage-card {
     background-color: #e8e0d0;
     padding: 30px;
     border-radius: 12px;
-    border: 1px solid #8b7355;
+    
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s, box-shadow 0.3s, cursor 0.3s;
     display: flex;
@@ -762,23 +761,57 @@ video {
     cursor: pointer;
 }
 
+/* 第 1 个卡片 */
+.advantage-card:nth-child(1) {
+    background-color: #7A948B;
+    color: #fff;
+}
+.advantage-card:nth-child(1):hover {
+    background-color: #677F76;
+}
+
+/* 第 2 个卡片 */
+.advantage-card:nth-child(2) {
+    background-color: #E4D2CB;
+    color: #333;
+}
+.advantage-card:nth-child(2):hover {
+    background-color: #D7BBB0;
+}
+
+/* 第 3 个卡片 */
+.advantage-card:nth-child(3) {
+    background-color: #C6AA96;
+    color: #fff;
+}
+.advantage-card:nth-child(3):hover {
+    background-color: #B09480;
+}
+
+/* 第 4 个卡片 */
+.advantage-card:nth-child(4) {
+    background-color: #BA7878;
+    color: #fff;
+}
+.advantage-card:nth-child(4):hover {
+    background-color: #A66565;
+}
+
 .advantage-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    background-color: #e0d5c0;
 }
 
 .advantage-card h3 {
     margin-bottom: 15px;
-    color: #8b7355;
     font-size: 1.1rem;
 }
 
 .advantage-card p {
-    color: #333;
     font-size: 0.95rem;
     line-height: 1.5;
 }
+
 
 /* 进制转换快速体验 */
 .quick-convert {
@@ -941,7 +974,7 @@ video {
     width: 80%;
     margin: 0 auto 20px;
     padding: 10px;
-    background-color: #8b7355;
+    background-color:rgba(171, 185, 166);
     color: #f5f2e9;
     border: none;
     border-radius: 4px;
@@ -951,7 +984,7 @@ video {
 }
 
 .watch-btn:hover {
-    background-color: #6b5a3c;
+    background-color: rgba(156, 170, 151);
 }
 
 /* 新手学习路径 */
@@ -1272,4 +1305,157 @@ html {
     .watch-btn {
         min-height: 44px;
     }
+}
+.ai-contain {
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.ai-people {
+    width: 150px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.people-pic {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.2s ease;
+}
+
+/* 数字人说话动画 */
+.people-pic.talking {
+    animation: humanTalk 0.25s infinite alternate;
+}
+
+@keyframes humanTalk {
+    from { transform: scale(1) rotate(0deg); }
+    to   { transform: scale(1.03) rotate(0.5deg); }
+}
+
+/* 聊天窗口 */
+.ai-chat {
+    width: 320px;
+    margin-right:30px;
+    background:  rgba(171, 185, 166, 0.8);
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    margin-bottom: 0px;
+    display: none;
+    overflow: hidden;
+}
+
+.ai-chat.active {
+    display: block  !important;
+}
+
+.ai-chat-head {
+    background:rgba(85, 125, 116, 0.9);
+    color: #fff;
+    padding: 12px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ai-chat-title {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.ai-chat-close {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.ai-chat-content {
+    height: 300px;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ai-chat-message {
+    background: rgba(245, 241, 232, 0.8);
+    padding: 8px 12px;
+    border-radius: 14px;
+    align-self: flex-start;
+    max-width: 80%;
+    word-wrap: break-word;
+}
+
+.user-message {
+    background:rgba(71,104,97,0.7);
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 14px;
+    align-self: flex-end;
+    max-width: 80%;
+    word-wrap: break-word;
+}
+.ai-message {
+     background: rgba(245, 241, 232, 0.8);
+    padding: 8px 12px;
+    border-radius: 14px;
+    align-self: flex-start;
+    max-width: 80%;
+    word-wrap: break-word;
+}
+.ai-chat-input {
+    display: flex;
+    padding: 8px;
+    gap: 5px;
+    border-top: 1px solid #eee;
+}
+
+.ai-chat-input input {
+    flex: 1;
+    padding: 12px 10px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    outline: none;
+    font-size: 14px;
+    background: rgba(245, 241, 232, 0.9);
+}
+
+.ai-chat-input input:focus {
+    border-color: #7f6c57;
+}
+#sendb {
+    width:40px;
+    height:40px;
+    border: none;
+    border-radius: 50%; /* 圆形按钮 */
+    background:rgba(144,155,121,0.9) url("./pictures/result.png") no-repeat center;
+    background-size: 20px 20px; /* 图标大小 */
+   
+}
+.ai-chat-input button {
+    padding: 8px 12px;
+    background: rgba(144,155,121,0.9);
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+.ai-chat-input button:hover {
+    background:rgba(91,104,81,0.9) ;
+}
+#sendb:hover {
+	 background:rgba(91,104,81,0.9) url("./pictures/result.png") no-repeat center;
+	 background-size: 20px 20px;
 }
